@@ -11,19 +11,19 @@
 
 ---
 
-## Épico 2 — ______________________________________
+## Épico 2 — Sistema de Login
 **Descrição:**  
-(Explique o objetivo deste conjunto de funcionalidades.)
+Realizar login de entrada do usuário verificando e-mail, senha e realizando uma verificação de segurança.
 
 ### User Stories
-- **US10 — ______________________________________**  
-  *Como ________, quero ______________________________________ para ______________________________________.*
+- **US03 — Login**  
+  *Como usuário, quero inserir meu e-mail e senha para obter acesso ao aplicativo.*
 
-- **US11 — ______________________________________**  
-  *Como ________, quero ______________________________________ para ______________________________________.*
+- **US04 — Erro de login**  
+  *Como sistema, quero avisar o usuário sobre um erro em seu e-mail ou senha para que ele tente novamente.*
 
-- **US12 — ______________________________________**  
-  *Como ________, quero ______________________________________ para ______________________________________.*
+- **US05 — Exesso de tentativas**  
+  *Como sistema, quero avisar ao usuário que exedeu a quantidade de tentativas permitidas para realizar o login e foi bloqueado.*
 
 ---
 
