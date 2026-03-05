@@ -1,16 +1,13 @@
 ## Épico 1 — Sistema de Cadastro
 **Descrição:**  
-(Explique o objetivo geral deste épico.)
+(Realização de cadastro de novos usuários.)
 
 ### User Stories
-- **US01 — ______________________________________**  
-  *Como ________, quero ______________________________________ para ______________________________________.*
+- **US01 — Sistema de Login**  
+  *Como Novo usuário, quero me cadastrar meu e-mail e senha para obter acesso ao aplicativo.*
 
-- **US02 — ______________________________________**  
-  *Como ________, quero ______________________________________ para ______________________________________.*
-
-- **US03 — ______________________________________**  
-  *Como ________, quero ______________________________________ para ______________________________________.*
+- **US02 — **  
+  *Como Usuario esquecido, quero recuperar minha senha ou e-mail para recuperar o acesso ao meu login.*
 
 ---
 
