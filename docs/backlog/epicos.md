@@ -3,31 +3,24 @@
 (Realização de cadastro de novos usuários.)
 
 ### User Stories
-- **US01 — Sistema de Login**  
-  *Como Novo usuário, quero me cadastrar meu e-mail e senha para obter acesso ao aplicativo.*
+- **US01 — Registro**  
+  *Como Novo usuário, quero cadastrar meu e-mail e senha para obter acesso ao aplicativo.*
 
-- **US02 — **  
+- **US02 — Recuperação de senha/e-mail**  
   *Como Usuario esquecido, quero recuperar minha senha ou e-mail para recuperar o acesso ao meu login.*
 
----
-
-## Épico 2 — Sistema de Login
-**Descrição:**  
-Realizar login de entrada do usuário verificando e-mail, senha e realizando uma verificação de segurança.
-
-### User Stories
 - **US03 — Login**  
   *Como usuário, quero inserir meu e-mail e senha para obter acesso ao aplicativo.*
 
 - **US04 — Erro de login**  
-  *Como sistema, quero avisar o usuário sobre um erro em seu e-mail ou senha para que ele tente novamente.*
+  *Como sistema, quero avisar o usuário sobre um erro em seu e-mail ou senha e a quantidade de tentativas restantes para que ele tente novamente.*
 
 - **US05 — Exesso de tentativas**  
   *Como sistema, quero avisar ao usuário que exedeu a quantidade de tentativas permitidas para realizar o login e foi bloqueado.*
 
 ---
 
-## Épico 3 — Pesquisa por URL
+## Épico 2 — Pesquisa por URL
 **Descrição:**  
 Pesquisa da URL do perfil do Linkedin do indivíduo e/ou do domínio da empresa.
 ### User Stories
@@ -37,7 +30,7 @@ Pesquisa da URL do perfil do Linkedin do indivíduo e/ou do domínio da empresa.
 - **US07 — Pesquisar Domínio da Empresa**  
   *Como usuário, quero pesquisar o site da empresa para auxiliar na criação do script
 
-## Épico 4 — Geração de Script
+## Épico 3 — Geração de Script
 **Descrição:**  
 Criação de roteiros para e-mail e ligação com base na pesquisa realizada.
 ### User Stories
