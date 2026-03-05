@@ -26,7 +26,7 @@ A2) - Usuário bloqueado:
   2) Exibe mensagem de usuário com bloqueio temporário
 
 Regras de Negócio:
-- RN01: Bloqueio após 5 tentativas inválidas.
+- RN03: Bloqueio após 5 tentativas inválidas.
 
 Requisitos Relacionados:
 - RF01 Login
