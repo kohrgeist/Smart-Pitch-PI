@@ -14,6 +14,7 @@ Fluxo Principal:
 3)Sistema salva as alterações no banco de dados.
 
 Fluxos Alternativos:
+
 A1) - Cadastro de novo usuário
   1)Usuário acessa a tela de registro e informa os dados.
   2)Sistema valida se a idade é superior a 18 anos.
