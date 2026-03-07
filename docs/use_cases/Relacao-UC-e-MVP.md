@@ -2,7 +2,9 @@
 Funcionalidades essenciais para a aplicação:
 
 UC01: Realizar Login / Gestão de Acesso
+
 Relacionamento: Vinculado ao Épico 1 — Sistema de Cadastro.
+
 User Stories do MVP: 
 - US01 (Registro)
 - US03 (Login)
@@ -11,7 +13,9 @@ User Stories do MVP:
 Justificativa MVP: O acesso seguro via Firebase é inegociável para proteger a ferramenta corporativa e as chaves de API. A US02 (Recuperação de senha) pode ser feita de forma manual pelo administrador do Firebase nesta primeira versão de testes, priorizando o tempo de desenvolvimento para a IA.
 
 UC02: Gerar Pitch de Vendas Personalizado
+
 Relacionamento: Vinculado ao Épico 2 — Pesquisa por URL e ao Épico 3 — Geração de Script.
+
 User Stories do MVP: 
 - US06 (Pesquisa Perfil do Decisor)
 - US07 (Pesquisar Domínio da Empresa)
@@ -22,7 +26,9 @@ Justificativa MVP: É o núcleo da aplicação. O sistema deve ser capaz de rece
 Funcionalidades que serão aplicadas posteriormente, não críticas para a etapa atual de desenvolvimento.
 
 UC03: Gerenciar Histórico e Favoritos
+
 Relacionamento: Vinculado ao Épico 3 — Geração de Script.
+
 User Stories Pós-MVP: 
 - US09 [Corrigido] (Salvar Modelo Favorito)
 - US10 [Corrigido] (Salvar Modelo Por Determinado Período)
