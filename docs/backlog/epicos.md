@@ -34,16 +34,16 @@ Pesquisa da URL do perfil do Linkedin do indivíduo e/ou do domínio da empresa.
 **Descrição:**  
 Criação de roteiros para e-mail e ligação com base na pesquisa realizada.
 ### User Stories
-- **US07 — Exibir Modelos de Script**  
+- **US08 — Exibir Modelos de Script**  
   *Como sistema, quero gerar um roteiro de e-mail para o usuário com base na pesquisa por URL realizada.*
   *Como sistema, quero gerar um roteiro de ligação para o usuário com base na pesquisa por URL realizada.*
 
-- **US08 — Salvar Modelo Favorito**  
+- **US09 — Salvar Modelo Favorito**  
   Como usuário, quero salvar o roteiro que mais gostei como favorito*
 
-- **US09 — Salvar Modelo Por Determinado Período**  
+- **US10 — Salvar Modelo Por Determinado Período**  
   Como sistema, quero salvar o roteiro do usuário por 7 dias*
 
-- **US10 — Excluir Modelo Após Determinado Período**  
+- **US11 — Excluir Modelo Após Determinado Período**  
   Como sistema, quero excluir o roteiro após 7 dias*
 
