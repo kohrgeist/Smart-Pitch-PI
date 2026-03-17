@@ -19,13 +19,13 @@ Acessar o sistema após a autenticação ser validada.
 
 ### Fluxos Alternativos
 - **A1 — Credenciais inválidas:**
-  1. O sistema rejeita as credenciais.
-  2. O sistema exibe uma mensagem de falha.
-  3. O sistema retorna ao passo 1 do fluxo principal.
+  1 O sistema rejeita as credenciais.
+  2 O sistema exibe uma mensagem de falha.
+  3 O sistema retorna ao passo 1 do fluxo principal.
 
 - **A2 — Usuário bloqueado:**
-  1. O sistema detecta que as tentativas de login foram excedidas.
-  2. O sistema exibe uma mensagem de usuário com bloqueio temporário.
+  1 O sistema detecta que as tentativas de login foram excedidas.
+  2 O sistema exibe uma mensagem de usuário com bloqueio temporário.
 
 ### RF Relacionados
 - RF01
