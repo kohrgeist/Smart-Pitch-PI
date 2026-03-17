@@ -4,34 +4,34 @@
 Usuário
 
 ### Objetivo
-Acessar o sistema após a autenticação ser validada.
+Acessar o sistema após autenticação ser válida.
 
 ### Pré-condições
-- O usuário deve possuir uma conta ativa no sistema.
+- Possui uma conta ativa.
 
 ### Pós-condições
-- Sessão iniciada com sucesso.
+- Iniciar sessão.
 
 ### Fluxo Principal
-1. O usuário informa e-mail e senha.
-2. O sistema valida as credenciais.
-3. O sistema redireciona o usuário para a tela de início.
+1. Usuário informa e-mail e senha.
+2. Sistema valida credenciais.
+3. Sistema redireciona para a tela de início.
 
 ### Fluxos Alternativos
 - **A1 — Credenciais inválidas:**
-  1. O sistema rejeita as credenciais.
-  2. O sistema exibe uma mensagem de falha.
-  3. O sistema retorna ao passo 1 do fluxo principal.
+  1. Sistema rejeita credenciais.
+  2. Exibe mensagem de falha.
+  3. Retorna ao passo 1 do fluxo principal.
 
 - **A2 — Usuário bloqueado:**
-  1. O sistema detecta que as tentativas de login foram excedidas.
-  2. O sistema exibe uma mensagem de usuário com bloqueio temporário.
+  1. Sistema detecta as tentativas excedidas.
+  2. Exibe mensagem de usuário com bloqueio temporário.
 
 ### RF Relacionados
-- RF01
+- RF01 Login
 
 ### RNF Relacionados
-- RNF01
+- RNF01 Resposta em até 2s
 
 ### RN Relacionadas
-- RN03
+- RN03: Bloqueio após 5 tentativas inválidas.
