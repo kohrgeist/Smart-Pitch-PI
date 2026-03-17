@@ -1,33 +1,37 @@
-Caso de Uso: Realizar Login
+## UC01 — Realizar Login
 
-Ator: Usuário
+### Ator Principal
+Usuário
 
-Objetivo: Acessar o sistema após autenticação ser válida
+### Objetivo
+Acessar o sistema após a autenticação ser validada.
 
-Pré-condições:
-- Possui uma conta ativa
+### Pré-condições
+- O usuário deve possuir uma conta ativa no sistema.
 
-Pós-condições:
-- Iniciar sessão
+### Pós-condições
+- Sessão iniciada com sucesso.
 
-Fluxo Principal:
-1) Usuário informa e-mail e senha.
-2) Sistema valida credenciais.
-3) Sistema redireciona para a tela de início.
+### Fluxo Principal
+1. O usuário informa e-mail e senha.
+2. O sistema valida as credenciais.
+3. O sistema redireciona o usuário para a tela de início.
 
-Fluxos Alternativos:
-A1) - Credenciais inválidas
-  1) Sistema rejeita credenciais.
-  2) Exibe mensagem de falha.
-  3) Retorna ao passo 1 do fluxo principal
-  
-A2) - Usuário bloqueado:
-  1) Sistema detecta as tentativas excedidas.
-  2) Exibe mensagem de usuário com bloqueio temporário
+### Fluxos Alternativos
+- **A1 — Credenciais inválidas:**
+  1. O sistema rejeita as credenciais.
+  2. O sistema exibe uma mensagem de falha.
+  3. O sistema retorna ao passo 1 do fluxo principal.
 
-Regras de Negócio:
-- RN03: Bloqueio após 5 tentativas inválidas.
+- **A2 — Usuário bloqueado:**
+  1. O sistema detecta que as tentativas de login foram excedidas.
+  2. O sistema exibe uma mensagem de usuário com bloqueio temporário.
 
-Requisitos Relacionados:
-- RF01 Login
-- RNF01 Resposta em até 2s
+### RF Relacionados
+- RF01
+
+### RNF Relacionados
+- RNF01
+
+### RN Relacionadas
+- RN03
