@@ -13,7 +13,6 @@ class SplashPage extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
 
-            // Logo + Nome
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -61,12 +60,10 @@ class SplashPage extends StatelessWidget {
               ],
             ),
 
-            // Espaço restante com loading + texto
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Círculo com loading
                   Container(
                     width: 52,
                     height: 52,
@@ -88,7 +85,6 @@ class SplashPage extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                  // Texto
                   const Text(
                     "Carregando...",
                     style: TextStyle(
