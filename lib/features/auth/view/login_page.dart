@@ -159,21 +159,21 @@ class _LoginPageState extends State<LoginPage> {
                           color: const Color(0xFF9DCC3B),
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(
-                            color: const Color(0xFF11266C), // Borda Azul
+                            color: const Color(0xFF11266C),
                             width: 1.5,
                           ),
                         ),
                         alignment: Alignment.center,
                         child: viewModel.isLoading
                             ? const CircularProgressIndicator(
-                                color: Color(0xFF11266C), // Loading Azul
+                                color: Color(0xFF11266C),
                               )
                             : const Text(
                                 "Entrar",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w900,
                                   fontSize: 20,
-                                  color: Color(0xFF11266C), // Texto Azul
+                                  color: Color(0xFF11266C),
                                 ),
                               ),
                       ),
@@ -192,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                           color: const Color(0xFF9DCC3B),
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(
-                            color: const Color(0xFF11266C), // Borda Azul
+                            color: const Color(0xFF11266C),
                             width: 1.5,
                           ),
                         ),
@@ -202,7 +202,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w900,
                             fontSize: 20,
-                            color: Color(0xFF11266C), // Texto Azul
+                            color: Color(0xFF11266C),
                           ),
                         ),
                       ),
