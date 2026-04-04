@@ -7,4 +7,6 @@ abstract class AppRoutes {
   static const String pitch = '/pitch';
   static const String historico = '/historico';
   static const String favoritos = '/favoritos';
+  static const String erro = '/erro';
+  static const String esqueciLogin = '/esqueciLogin';
 }
