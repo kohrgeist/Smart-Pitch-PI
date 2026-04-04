@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smart_pitch/app/routes/app_routes.dart';
 
 class HistoricoPage extends StatefulWidget {
   const HistoricoPage({super.key});
@@ -28,7 +27,7 @@ class _HistoricoState extends State<HistoricoPage> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/favorites');
+                Navigator.pushNamed(context, '/favoritos');
               },
               child: const Text('Favoritos'),
             ),
