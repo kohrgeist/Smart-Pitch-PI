@@ -150,7 +150,12 @@ class _LoginPageState extends State<LoginPage> {
                           ? null
                           : () {
                               if (viewModel.formKey.currentState?.validate() ??
-                                  false) {}
+                                  false) {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  AppRoutes.home,
+                                );
+                              }
                             },
                       borderRadius: BorderRadius.circular(25),
                       child: Container(

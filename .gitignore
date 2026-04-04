@@ -46,7 +46,7 @@ app.*.map.json
 # ==========================================
 # Special Rules for our project.
 # ==========================================
-# Ignore folders of other platforms. Focus only in Android.
+# ignore folders. focus android
 /ios/
 /linux/
 /macos/
