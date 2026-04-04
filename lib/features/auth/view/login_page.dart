@@ -49,13 +49,13 @@ class _LoginPageState extends State<LoginPage> {
                             height: 40,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              color: const Color(0xFF11266C), // Azul do projeto
+                              color: const Color(0xFF11266C),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: const Text(
-                              "SP", // Alterado para SP
+                              "SP",
                               style: TextStyle(
-                                color: Color(0xFF93C736), // Verde do projeto
+                                color: Color(0xFF93C736),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 24,
                               ),
@@ -67,15 +67,13 @@ class _LoginPageState extends State<LoginPage> {
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF11266C), // Azul do projeto
+                              color: Color(0xFF11266C),
                             ),
                           ),
                         ],
                       ),
                     ),
-
                     const SizedBox(height: 120),
-
                     const Text(
                       "E-mail",
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -95,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide.none, // Remove a borda padrão
+                          borderSide: BorderSide.none,
                         ),
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16,
@@ -103,9 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 20),
-
                     const Text(
                       "Senha",
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -142,15 +138,18 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 40),
-
                     InkWell(
                       onTap: viewModel.isLoading
                           ? null
                           : () {
                               if (viewModel.formKey.currentState?.validate() ??
-                                  false) {}
+                                  false) {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  AppRoutes.home,
+                                );
+                              }
                             },
                       borderRadius: BorderRadius.circular(25),
                       child: Container(
@@ -178,9 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                       ),
                     ),
-
                     const SizedBox(height: 15),
-
                     InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, AppRoutes.register);
