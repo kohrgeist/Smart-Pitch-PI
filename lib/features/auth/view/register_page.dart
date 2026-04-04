@@ -143,9 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ? null
                           : () {
                               if (viewModel.formKey.currentState?.validate() ??
-                                  false) {
-                                // TODO: Adicionar a viewModel.registrarUsuario
-                              }
+                                  false) {}
                             },
                       borderRadius: BorderRadius.circular(25),
                       child: Container(

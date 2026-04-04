@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Projeto 01 - Smart Pitch',
       theme: ThemeData(useMaterial3: true),
-      initialRoute: AppRoutes.pitch,
+      initialRoute: AppRoutes.splash,
       routes: AppPages.routes,
     );
   }
