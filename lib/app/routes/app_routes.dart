@@ -8,5 +8,5 @@ abstract class AppRoutes {
   static const String historico = '/historico';
   static const String favoritos = '/favoritos';
   static const String erro = '/erro';
-  static const String esqueciLogin = '/esqueciLogin';
+  static const String esqueciSenha = '/esqueciSenha';
 }
