@@ -21,22 +21,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
-              RichText(
-                text: const TextSpan(
-                  style: TextStyle(
-                    fontSize: 42,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: "Smart ",
-                      style: TextStyle(color: Color(0xFF11266C)),
-                    ),
-                    TextSpan(
-                      text: "Pitch",
-                      style: TextStyle(color: Color(0xFF93C736)),
-                    ),
-                  ],
+
+              // Logo atualizada
+              Center(
+                child: Image.asset(
+                  'assets/images/logo.jpg',
+                  height: 80,
+                  fit: BoxFit.contain,
                 ),
               ),
 
@@ -61,8 +52,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           filled: true,
                           fillColor: const Color(0xFF2B388F),
                           hintText: "teste@gmail.com",
-                          hintStyle:
-                              const TextStyle(color: Colors.white70),
+                          hintStyle: const TextStyle(color: Colors.white70),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide: BorderSide.none,
