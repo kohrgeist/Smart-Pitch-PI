@@ -9,4 +9,5 @@ abstract class AppRoutes {
   static const String favoritos = '/favoritos';
   static const String erro = '/erro';
   static const String esqueciSenha = '/esqueciSenha';
+  static const String perfil = '/perfil';
 }
