@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD:lib/ui/features/auth/view/favorites_page.dart
-import '../../../../app/routes/app_routes.dart';
-=======
->>>>>>> 2017b10261579575fa65db890d58a21a0cc11871:lib/features/auth/view/favorites_page.dart
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
