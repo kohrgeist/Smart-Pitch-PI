@@ -49,7 +49,6 @@ class LoginViewmodel extends ChangeNotifier {
 
     try {
       await _authRepository.login(email: email, password: password);
-
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(

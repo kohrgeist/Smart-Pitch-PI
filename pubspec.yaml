@@ -22,6 +22,15 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+<<<<<<< HEAD
   # Adicione suas imagens e fontes aqui:
   assets:
     - assets/images/logo.jpg
+=======
+<<<<<<< HEAD
+=======
+  # Adicione suas imagens e fontes aqui:
+  assets:
+    - assets/images/logo.jpg
+>>>>>>> 8606883 (feat: cria telas de historico, favoritos e adiciona logo)
+>>>>>>> temp-auth-branch

@@ -129,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextFormField(
                       // Integração de novas funções criadas na viewmodel
                       controller: viewModel.confirmPasswordController,
-                      obscureText: viewModel.confirmPasswordObscure,
+                      obscureText: viewModel.confirmObscurePassword,
                       validator: viewModel.confirmPasswordValidator,
                       style: const TextStyle(color: Colors.white),
                       decoration: _inputDecoration("Confirme sua senha..")
@@ -138,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               onPressed:
                                   viewModel.toggleConfirmPasswordVisibility,
                               icon: Icon(
-                                viewModel.confirmPasswordObscure
+                                viewModel.confirmObscurePassword
                                     ? Icons.visibility
                                     : Icons.visibility_off,
                                 color: const Color.fromARGB(197, 219, 219, 219),
@@ -154,8 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       onTap: viewModel.isLoading
                           ? null
                           : () {
-                              // Aciona a função de registro na viewmodel passando contexto
-                              viewModel.onPressedRegister(context);
+                              viewModel.onRegisterPressed(context);
                             },
                       borderRadius: BorderRadius.circular(25),
                       child: Container(

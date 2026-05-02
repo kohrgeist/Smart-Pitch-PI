@@ -6,39 +6,34 @@ import '../../../../app/routes/app_routes.dart';
 
 class RegisterViewmodel extends ChangeNotifier {
   final AuthRepository _authRepository;
-  RegisterViewmodel({required AuthRepository authRepository})
-    : _authRepository = authRepository;
 
   final formKey = GlobalKey<FormState>();
+
+  RegisterViewmodel({required AuthRepository authRepository})
+    : _authRepository = authRepository;
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
   bool obscurePassword = true;
-  bool confirmPasswordObscure = true;
+  bool confirmObscurePassword = true;
   bool isLoading = false;
 
-  String? emailValidator(String? value) {
-    return Validatorless.multiple([
-      Validatorless.required('Email é obrigatório'),
-      Validatorless.email('Digite um email válido'),
-    ])(value);
-  }
+  String? emailValidator(String? value) => Validatorless.multiple([
+    Validatorless.required('Email é obrigatório'),
+    Validatorless.email('Digite um email válido'),
+  ])(value);
 
-  String? passwordValidator(String? value) {
-    return Validatorless.multiple([
-      Validatorless.required('Senha é obrigatória'),
-      Validatorless.min(6, 'A senha deve ter pelo menos 6 caracteres'),
-    ])(value);
-  }
+  String? passwordValidator(String? value) => Validatorless.multiple([
+    Validatorless.required('Senha é obrigatória'),
+    Validatorless.min(6, 'A senha deve ter pelo menos 6 caracteres'),
+  ])(value);
 
-  String? confirmPasswordValidator(String? value) {
-    return Validatorless.multiple([
-      Validatorless.required('Confirmação de senha é obrigatória'),
-      Validatorless.compare(passwordController, 'As senhas não são iguais'),
-    ])(value);
-  }
+  String? confirmPasswordValidator(String? value) => Validatorless.multiple([
+    Validatorless.required('Confirmação é obrigatória'),
+    Validatorless.compare(passwordController, 'As senhas não coincidem'),
+  ])(value);
 
   void togglePasswordVisibility() {
     obscurePassword = !obscurePassword;
@@ -46,11 +41,17 @@ class RegisterViewmodel extends ChangeNotifier {
   }
 
   void toggleConfirmPasswordVisibility() {
-    confirmPasswordObscure = !confirmPasswordObscure;
+    confirmObscurePassword = !confirmObscurePassword;
     notifyListeners();
   }
 
-  Future<void> onPressedRegister(BuildContext context) async {
+  Future<void> onRegisterPressed(BuildContext context) async {
+    final formValid = formKey.currentState?.validate() ?? false;
+    if (!formValid) return;
+
+    isLoading = true;
+    notifyListeners();
+
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
