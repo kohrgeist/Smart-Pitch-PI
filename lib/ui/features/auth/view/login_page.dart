@@ -1,23 +1,21 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
-import '../../../app/routes/app_routes.dart';
-import '../viewmodel/register_viewmodel.dart';
+import '../../../../app/routes/app_routes.dart';
+import '../viewmodel/login_viewmodel.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
-  late final RegisterViewmodel viewModel;
+class _LoginPageState extends State<LoginPage> {
+  late final LoginViewmodel viewModel;
 
   @override
   void initState() {
     super.initState();
-    viewModel = RegisterViewmodel();
+    viewModel = LoginViewmodel();
   }
 
   @override
@@ -42,8 +40,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(height: 24),
-
-                    // Logo SmartPitch
                     Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +61,6 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-
                           const SizedBox(width: 10),
                           const Text(
                             "SmartPitch",
@@ -78,23 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ],
                       ),
                     ),
-
-                    const SizedBox(height: 80),
-
-                    const Center(
-                      child: Text(
-                        "Crie sua conta",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF11266C),
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 30),
-
-                    // Campo E-mail
+                    const SizedBox(height: 120),
                     const Text(
                       "E-mail",
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -105,25 +84,49 @@ class _RegisterPageState extends State<RegisterPage> {
                       validator: viewModel.emailValidator,
                       keyboardType: TextInputType.emailAddress,
                       style: const TextStyle(color: Colors.white),
-                      decoration: _inputDecoration("Seu email.."),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: const Color(0xFF2B388F),
+                        hintText: "seu email",
+                        hintStyle: const TextStyle(
+                          color: Color.fromARGB(197, 219, 219, 219),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none,
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 15,
+                        ),
+                      ),
                     ),
-
                     const SizedBox(height: 20),
-
-                    // Campo Senha
                     const Text(
                       "Senha",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-
                     const SizedBox(height: 8),
-
                     TextFormField(
                       controller: viewModel.passwordController,
                       obscureText: viewModel.obscurePassword,
                       validator: viewModel.passwordValidator,
                       style: const TextStyle(color: Colors.white),
-                      decoration: _inputDecoration("Sua senha..").copyWith(
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: const Color(0xFF2B388F),
+                        hintText: "sua senha",
+                        hintStyle: const TextStyle(
+                          color: Color.fromARGB(197, 219, 219, 219),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none,
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 15,
+                        ),
                         suffixIcon: IconButton(
                           onPressed: viewModel.togglePasswordVisibility,
                           icon: Icon(
@@ -136,14 +139,17 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     const SizedBox(height: 40),
-
-                    // Botão Registrar
                     InkWell(
                       onTap: viewModel.isLoading
                           ? null
                           : () {
                               if (viewModel.formKey.currentState?.validate() ??
-                                  false) {}
+                                  false) {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  AppRoutes.home,
+                                );
+                              }
                             },
                       borderRadius: BorderRadius.circular(25),
                       child: Container(
@@ -162,7 +168,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 color: Color(0xFF11266C),
                               )
                             : const Text(
-                                "Registrar",
+                                "Entrar",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w900,
                                   fontSize: 20,
@@ -171,15 +177,31 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                       ),
                     ),
-
                     const SizedBox(height: 15),
-
-                    // Botão Voltar para Login
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text(
-                        "Já tem uma conta? Faça login",
-                        style: TextStyle(color: Color(0xFF11266C)),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.register);
+                      },
+                      borderRadius: BorderRadius.circular(25),
+                      child: Container(
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF9DCC3B),
+                          borderRadius: BorderRadius.circular(25),
+                          border: Border.all(
+                            color: const Color(0xFF11266C),
+                            width: 1.5,
+                          ),
+                        ),
+                        alignment: Alignment.center,
+                        child: const Text(
+                          "Registrar",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20,
+                            color: Color(0xFF11266C),
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -189,21 +211,6 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         );
       },
-    );
-  }
-
-  // Função para não repetir código de estilo de input
-  InputDecoration _inputDecoration(String hintText) {
-    return InputDecoration(
-      filled: true,
-      fillColor: const Color(0xFF2B388F),
-      hintText: hintText,
-      hintStyle: const TextStyle(color: Color.fromARGB(197, 219, 219, 219)),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide.none,
-      ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
     );
   }
 }

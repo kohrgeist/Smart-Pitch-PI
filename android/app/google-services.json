@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1033856903239",
+    "project_id": "smart-ptich",
+    "storage_bucket": "smart-ptich.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033856903239:android:5a90fb4d3349d941dca962",
+        "android_client_info": {
+          "package_name": "com.example.smart_pitch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASsKVLtpqTUSb9_LCRZZPNS90BGtFTzJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
