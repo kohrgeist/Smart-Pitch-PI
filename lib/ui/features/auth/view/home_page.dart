@@ -6,110 +6,130 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const Color azulSmart = Color(0xFF11266C);
+    const Color verdeSmart = Color(0xFF93C736);
+    const Color cinzaFundo = Color(0xFFF6F6F6);
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: cinzaFundo,
       appBar: AppBar(
-        title: const Text(
-          "Início",
-          style: TextStyle(
-            color: Color(0xFF11266C),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
+        title: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+          decoration: BoxDecoration(
+            color: const Color(0xFFF2E9F5), // Tom suave do figma
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: const Text(
+            "Início",
+            style: TextStyle(color: azulSmart, fontWeight: FontWeight.w500, fontSize: 16),
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.account_circle_outlined, color: azulSmart, size: 30),
+            onPressed: () => Navigator.pushNamed(context, AppRoutes.perfil), // Defina essa rota no seu app_routes
+          ),
+          const SizedBox(width: 10),
+        ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 60),
             const Text(
               "Comece a pesquisar",
-              textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 24,
-                color: Color(0xFF11266C),
+                fontSize: 26,
+                color: azulSmart,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'Georgia', // Ou a fonte serifada do seu projeto
               ),
             ),
             const SizedBox(height: 40),
-            TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: const Color(0xFF2B388F),
-                hintText: "URL do Linkedin",
-                hintStyle: const TextStyle(color: Colors.white70),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
+            _buildTextField("URL do Linkedin"),
+            const SizedBox(height: 15),
+            _buildTextField("URL site da empresa"),
+            const SizedBox(height: 80),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: verdeSmart,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    side: const BorderSide(color: azulSmart, width: 2),
+                  ),
+                  elevation: 5,
+                ),
+                onPressed: () => Navigator.pushNamed(context, AppRoutes.pitchLoading),
+                child: const Text(
+                  "Pesquisar",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: azulSmart,
+                  ),
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: const Color(0xFF2B388F),
-                hintText: "URL da Empresa",
-                hintStyle: const TextStyle(color: Colors.white70),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-              style: const TextStyle(color: Colors.white),
-            ),
-            const SizedBox(height: 40),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF9DCC3B),
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                  side: const BorderSide(color: Color(0xFF11266C), width: 1.5),
-                ),
-              ),
-              onPressed: () =>
-                  Navigator.pushNamed(context, AppRoutes.pitchLoading),
-              child: const Text(
-                "Pesquisar",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w900,
-                  color: Color(0xFF11266C),
-                ),
-              ),
-            ),
-            const SizedBox(height: 60),
-
-            // botoes de teste p/ navegação
-            const Divider(),
-            const Text(
-              "Menu Rápido (Testes):",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextButton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, AppRoutes.historico),
-                  child: const Text("Histórico"),
-                ),
-                TextButton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, AppRoutes.favoritos),
-                  child: const Text("Favoritos"),
-                ),
-              ],
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: _buildBottomNav(context),
+    );
+  }
+
+  Widget _buildTextField(String hint) {
+    return TextField(
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: const Color(0xFF1C2D6B),
+        hintText: hint,
+        hintStyle: const TextStyle(color: Colors.white70, fontSize: 14),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide.none,
+        ),
+      ),
+      style: const TextStyle(color: Colors.white),
+    );
+  }
+
+  Widget _buildBottomNav(BuildContext context) {
+    const Color azulSmart = Color(0xFF11266C);
+    return Container(
+      margin: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      decoration: BoxDecoration(
+        color: azulSmart,
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _navItem(Icons.person, "Perfil", () => Navigator.pushNamed(context, AppRoutes.perfil)),
+          _navItem(Icons.star_border, "Favoritos", () => Navigator.pushNamed(context, AppRoutes.favoritos)),
+          _navItem(Icons.menu, "Histórico", () => Navigator.pushNamed(context, AppRoutes.historico)),
+        ],
+      ),
+    );
+  }
+
+  Widget _navItem(IconData icon, String label, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.white, size: 20),
+          const SizedBox(width: 4),
+          Text(label, style: const TextStyle(color: Colors.white, fontSize: 12)),
+        ],
       ),
     );
   }

@@ -4,6 +4,7 @@ import '../../ui/features/auth/view/login_page.dart';
 import '../../ui/features/auth/view/register_page.dart';
 import '../../ui/features/splash/view/splash_page.dart';
 import '../../ui/features/auth/view/home_page.dart';
+import '../../ui/features/auth/view/perfil_page.dart';
 import '../../ui/features/auth/view/pitch_loading_page.dart';
 import '../../ui/features/auth/view/favorites_page.dart';
 import '../../ui/features/auth/view/pitch_page.dart';
@@ -17,6 +18,7 @@ abstract class AppPages {
     AppRoutes.register: (_) => const RegisterPage(),
     AppRoutes.splash: (_) => const SplashPage(),
     AppRoutes.home: (_) => const HomePage(),
+    AppRoutes.perfil: (_) => const PerfilPage(),
     AppRoutes.pitchLoading: (_) => const PitchLoadingPage(),
     AppRoutes.pitch: (_) => const PitchPage(),
     AppRoutes.historico: (_) => const HistoricoPage(),

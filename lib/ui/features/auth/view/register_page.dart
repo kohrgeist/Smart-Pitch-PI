@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import
-
+import '../../../../data/service/auth_service_impl.dart';
+import '../../../../data/repositories/auth_repository_impl.dart';
 import 'package:flutter/material.dart';
 import '../../../../app/routes/app_routes.dart';
 import '../viewmodel/register_viewmodel.dart';
@@ -17,7 +18,15 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-    viewModel = RegisterViewmodel();
+
+    // Serviço de autenticação
+    final authService = AuthServiceImpl();
+
+    // repositório de autenticação
+    final authRepository = AuthRepositoryImpl(authService);
+
+    // viewmodel de registro
+    viewModel = RegisterViewmodel(authRepository: authRepository);
   }
 
   @override
@@ -43,39 +52,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     const SizedBox(height: 24),
 
-                    // Logo SmartPitch
+                    // Logo atualizada
                     Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF11266C),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: const Text(
-                              "SP",
-                              style: TextStyle(
-                                color: Color(0xFF93C736),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                              ),
-                            ),
-                          ),
-
-                          const SizedBox(width: 10),
-                          const Text(
-                            "SmartPitch",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF11266C),
-                            ),
-                          ),
-                        ],
+                      child: Image.asset(
+                        'assets/images/logo.jpg',
+                        height: 100,
+                        fit: BoxFit.contain,
                       ),
                     ),
 

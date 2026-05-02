@@ -21,7 +21,15 @@ class PitchLoadingPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(Icons.search, size: 80, color: Color(0xFF11266C)),
+            // Logo atualizada (ícone de pesquisa substituído)
+            Center(
+              child: Image.asset(
+                'assets/images/logo.jpg',
+                height: 80,
+                fit: BoxFit.contain,
+              ),
+            ),
+
             const SizedBox(height: 24),
             const Center(
               child: CircularProgressIndicator(color: Color(0xFF9DCC3B)),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../app/routes/app_routes.dart';
 import '../viewmodel/login_viewmodel.dart';
+import '../../../../data/service/auth_service_impl.dart';
+import '../../../../data/repositories/auth_repository_impl.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,7 +17,15 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    viewModel = LoginViewmodel();
+
+    // Serviço de autenticação
+    final authService = AuthServiceImpl();
+
+    // repositório de autenticação
+    final authRepository = AuthRepositoryImpl(authService);
+
+    // viewmodel de login
+    viewModel = LoginViewmodel(authRepository: authRepository);
   }
 
   @override
@@ -40,39 +50,16 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(height: 24),
+
+                    // Logo atualizada
                     Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF11266C),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: const Text(
-                              "SP",
-                              style: TextStyle(
-                                color: Color(0xFF93C736),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          const Text(
-                            "SmartPitch",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF11266C),
-                            ),
-                          ),
-                        ],
+                      child: Image.asset(
+                        'assets/images/logo.jpg',
+                        height: 100,
+                        fit: BoxFit.contain,
                       ),
                     ),
+
                     const SizedBox(height: 120),
                     const Text(
                       "E-mail",
@@ -143,13 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: viewModel.isLoading
                           ? null
                           : () {
-                              if (viewModel.formKey.currentState?.validate() ??
-                                  false) {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  AppRoutes.home,
-                                );
-                              }
+                              viewModel.onLoginPressed(context);
                             },
                       borderRadius: BorderRadius.circular(25),
                       child: Container(

@@ -1,8 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
+import '../../../../data/repositories/auth_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../../../app/routes/app_routes.dart';
 
 class RegisterViewmodel extends ChangeNotifier {
+  final AuthRepository _authRepository;
+  RegisterViewmodel({required AuthRepository authRepository})
+    : _authRepository = authRepository;
+
   final formKey = GlobalKey<FormState>();
 
   final emailController = TextEditingController();
@@ -45,31 +51,51 @@ class RegisterViewmodel extends ChangeNotifier {
   }
 
   Future<void> onPressedRegister(BuildContext context) async {
-    //Dispara todos os validadores. email, senha e confirmar senha
-    final formValid = formKey.currentState?.validate() ?? false;
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
 
-    if (!formValid) {
-      return;
+    try {
+      await _authRepository.register(email: email, password: password);
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Cadastro realizado com sucesso!"),
+            backgroundColor: Colors.green,
+          ),
+        );
+
+        Navigator.pushReplacementNamed(context, AppRoutes.login);
+      }
+    } on FirebaseAuthException catch (e) {
+      String mensagemErro = "Erro ao realizar o cadastro.";
+
+      if (e.code == 'email-already-in-use') {
+        mensagemErro = "Este e-mail já está sendo usado por outra conta.";
+      } else if (e.code == 'weak-password') {
+        mensagemErro = "A senha fornecida é muito fraca.";
+      } else if (e.code == 'invalid-email') {
+        mensagemErro = "O e-mail fornecido é inválido.";
+      }
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(mensagemErro), backgroundColor: Colors.red),
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Ocorreu um erro inesperado. Tente novamente."),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      isLoading = false;
+      notifyListeners();
     }
-
-    isLoading = true;
-    notifyListeners();
-
-    final emailDigitado = emailController.text.trim();
-    final senhaValidationStatus = passwordController.text.trim();
-
-    await Future.delayed(const Duration(seconds: 3));
-
-    if (context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Cadastrado com sucesso!"),
-          backgroundColor: Colors.green,
-        ),
-      );
-    }
-    isLoading = false;
-    notifyListeners();
   }
 
   @override
