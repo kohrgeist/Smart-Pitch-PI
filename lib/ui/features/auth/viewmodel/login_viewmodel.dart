@@ -20,14 +20,14 @@ class LoginViewmodel extends ChangeNotifier {
 
   String? emailValidator(String? value) {
     return Validatorless.multiple([
-      Validatorless.required('Email é obrigatório'),
-      Validatorless.email('Digite um email válido'),
+      Validatorless.required('E-mail é obrigatório'),
+      Validatorless.email('Digite um e-mail válido'),
     ])(value);
   }
 
   String? passwordValidator(String? value) {
     return Validatorless.multiple([
-      Validatorless.required('Senha é obrigatória'),
+      Validatorless.required('A senha é obrigatória!'),
       Validatorless.min(6, 'A senha deve ter pelo menos 6 caracteres'),
     ])(value);
   }
@@ -65,7 +65,7 @@ class LoginViewmodel extends ChangeNotifier {
       if (e.code == 'user-not-found' || e.code == 'invalid-credential') {
         mensagemErro = "E-mail não encontrado ou senha incorreta.";
       } else if (e.code == 'too-many-requests') {
-        mensagemErro = "Muitas tentativas falhas. Tente novamente mais tarde.";
+        mensagemErro = "Muitas tentativas falhas! Tente novamente mais tarde.";
       }
 
       if (context.mounted) {
@@ -77,7 +77,7 @@ class LoginViewmodel extends ChangeNotifier {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text("Ocorreu um erro inesperado."),
+            content: Text("Ops! Parece que ocorreu um erro ."),
             backgroundColor: Colors.red,
           ),
         );
