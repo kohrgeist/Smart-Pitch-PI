@@ -4,11 +4,7 @@
 # This file should be version controlled and should not be manually edited.
 
 version:
-<<<<<<< HEAD
-  revision: "00b0c91f06209d9e4a41f71b7a512d6eb3b9c694"
-=======
-  revision: "db50e20168db8fee486b9abf32fc912de3bc5b6a"
->>>>>>> temp-auth-branch
+  revision: "ff37bef603469fb030f2b72995ab929ccfc227f0"
   channel: "stable"
 
 project_type: app
@@ -17,19 +13,11 @@ project_type: app
 migration:
   platforms:
     - platform: root
-<<<<<<< HEAD
-      create_revision: 00b0c91f06209d9e4a41f71b7a512d6eb3b9c694
-      base_revision: 00b0c91f06209d9e4a41f71b7a512d6eb3b9c694
+      create_revision: ff37bef603469fb030f2b72995ab929ccfc227f0
+      base_revision: ff37bef603469fb030f2b72995ab929ccfc227f0
     - platform: web
-      create_revision: 00b0c91f06209d9e4a41f71b7a512d6eb3b9c694
-      base_revision: 00b0c91f06209d9e4a41f71b7a512d6eb3b9c694
-=======
-      create_revision: db50e20168db8fee486b9abf32fc912de3bc5b6a
-      base_revision: db50e20168db8fee486b9abf32fc912de3bc5b6a
-    - platform: web
-      create_revision: db50e20168db8fee486b9abf32fc912de3bc5b6a
-      base_revision: db50e20168db8fee486b9abf32fc912de3bc5b6a
->>>>>>> temp-auth-branch
+      create_revision: ff37bef603469fb030f2b72995ab929ccfc227f0
+      base_revision: ff37bef603469fb030f2b72995ab929ccfc227f0
 
   # User provided section
 

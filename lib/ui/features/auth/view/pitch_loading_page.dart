@@ -13,7 +13,7 @@ class PitchLoadingPage extends StatelessWidget {
           Navigator.pushReplacementNamed(context, AppRoutes.pitch);
         }
       },
-    ); //TODO: Aguarda 3 segundos e vai para Pitch, quando inserirmos IA, vamos alterar isso.
+    ); // TODO: Aguarda 3 segundos e vai para Pitch, quando inserirmos IA, vamos alterar isso.
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
