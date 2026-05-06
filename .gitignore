@@ -52,3 +52,6 @@ app.*.map.json
 /macos/
 /web/
 /windows/
+
+# Ignore keys
+.env

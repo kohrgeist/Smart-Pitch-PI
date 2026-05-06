@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../app/routes/app_routes.dart';
+import '../../../app/routes/app_routes.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});
