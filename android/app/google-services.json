@@ -1,13 +1,32 @@
 {
   "project_info": {
-    "project_number": "1033856903239",
-    "project_id": "smart-ptich",
-    "storage_bucket": "smart-ptich.firebasestorage.app"
+    "project_number": "9799442059",
+    "project_id": "projeto-4-1d471",
+    "storage_bucket": "projeto-4-1d471.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1033856903239:android:5a90fb4d3349d941dca962",
+        "mobilesdk_app_id": "1:9799442059:android:83cd7c05f4f30ec581be8e",
+        "android_client_info": {
+          "package_name": "com.example.projeto04"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRApBNSnAcH9Q6G-eAq0XX5gJ5rtMd15U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9799442059:android:17c870343f5c557c81be8e",
         "android_client_info": {
           "package_name": "com.example.smart_pitch"
         }
@@ -15,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyASsKVLtpqTUSb9_LCRZZPNS90BGtFTzJA"
+          "current_key": "AIzaSyBRApBNSnAcH9Q6G-eAq0XX5gJ5rtMd15U"
         }
       ],
       "services": {

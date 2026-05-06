@@ -2,8 +2,81 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class PitchPage extends StatelessWidget {
+class PitchPage extends StatefulWidget {
   const PitchPage({super.key});
+
+  @override
+  State<PitchPage> createState() => _PitchPageState();
+}
+
+class _PitchPageState extends State<PitchPage> {
+  bool _isFavorito = false;
+  String? _documentId;
+  bool _isLoadingFav = false;
+
+  Future<void> _toggleFavorito(String pitchGerado) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Você precisa estar logado para favoritar!'),
+        ),
+      );
+      return;
+    }
+
+    setState(() => _isLoadingFav = true);
+
+    try {
+      final collection = FirebaseFirestore.instance
+          .collection('usuarios')
+          .doc(user.uid)
+          .collection('favoritos');
+
+      if (_isFavorito && _documentId != null) {
+        // Remover dos favoritos
+        await collection.doc(_documentId).delete();
+        setState(() {
+          _isFavorito = false;
+          _documentId = null;
+        });
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Removido dos favoritos!'),
+              backgroundColor: Colors.redAccent,
+            ),
+          );
+        }
+      } else {
+        // Adicionar aos favoritos
+        final docRef = await collection.add({
+          'pitch': pitchGerado,
+          'data_criacao': FieldValue.serverTimestamp(),
+        });
+        setState(() {
+          _isFavorito = true;
+          _documentId = docRef.id;
+        });
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Pitch salvo nos favoritos com sucesso!'),
+              backgroundColor: Color(0xFF93C736),
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Erro ao atualizar favoritos: $e')),
+        );
+      }
+    } finally {
+      setState(() => _isLoadingFav = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,57 +126,28 @@ class PitchPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 20),
-            TextButton(
-              onPressed: () async {
-                final user = FirebaseAuth.instance.currentUser;
-
-                if (user != null) {
-                  try {
-                    await FirebaseFirestore.instance
-                        .collection('usuarios')
-                        .doc(user.uid)
-                        .collection('favoritos')
-                        .add({
-                          'pitch': pitchGerado,
-                          'data_criacao': FieldValue.serverTimestamp(),
-                        });
-
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Pitch salvo no Firebase com sucesso!'),
-                          backgroundColor: Color(0xFF93C736),
-                        ),
-                      );
-                    }
-                  } catch (e) {
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Erro ao salvar no banco: $e')),
-                      );
-                    }
-                  }
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        'Você precisa estar logado para favoritar!',
+            _isLoadingFav
+                ? const CircularProgressIndicator()
+                : TextButton.icon(
+                    onPressed: () => _toggleFavorito(pitchGerado),
+                    icon: Icon(
+                      _isFavorito ? Icons.star : Icons.star_border,
+                      color: _isFavorito
+                          ? const Color(0xFF93C736)
+                          : const Color(0xFF11266C),
+                    ),
+                    label: Text(
+                      _isFavorito ? "Desfavoritar" : "Favoritar",
+                      style: TextStyle(
+                        color: _isFavorito
+                            ? const Color(0xFF93C736)
+                            : const Color(0xFF11266C),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
-                  );
-                }
-              },
-              child: const Text(
-                "Favoritar",
-                style: TextStyle(
-                  color: Color(0xFF11266C),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-            ),
+                  ),
           ],
         ),
       ),

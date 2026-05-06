@@ -3,7 +3,6 @@ import 'app_routes.dart';
 import 'package:smart_pitch/ui/features/home/view/home_page.dart';
 import 'package:smart_pitch/ui/features/pitch/view/pitch_loading_page.dart';
 import 'package:smart_pitch/ui/features/pitch/view/pitch_page.dart';
-
 import '../../ui/features/auth/view/login_page.dart';
 import '../../ui/features/auth/view/register_page.dart';
 import '../../ui/features/auth/view/forgot_password_page.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_pitch/ui/features/home/viewmodel/pitch_generator.dart';
 import '../../../../app/routes/app_routes.dart';
+import '../viewmodel/pitch_loading_viewmodel.dart';
 
 class PitchLoadingPage extends StatefulWidget {
   const PitchLoadingPage({super.key});
@@ -10,12 +10,42 @@ class PitchLoadingPage extends StatefulWidget {
 }
 
 class _PitchLoadingPageState extends State<PitchLoadingPage> {
+  final PitchLoadingViewModel _viewModel = PitchLoadingViewModel();
+
   @override
   void initState() {
     super.initState();
+
+    _viewModel.addListener(_onViewModelChange);
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _iniciarGeracao();
     });
+  }
+
+  @override
+  void dispose() {
+    _viewModel.removeListener(_onViewModelChange);
+    _viewModel.dispose();
+    super.dispose();
+  }
+
+  void _onViewModelChange() {
+    if (!mounted) return;
+
+    if (_viewModel.errorMessage != null) {
+      Navigator.pushReplacementNamed(
+        context,
+        AppRoutes.erro,
+        arguments: _viewModel.errorMessage,
+      );
+    } else if (_viewModel.generatedPitch != null) {
+      Navigator.pushReplacementNamed(
+        context,
+        AppRoutes.pitch,
+        arguments: _viewModel.generatedPitch,
+      );
+    }
   }
 
   Future<void> _iniciarGeracao() async {
@@ -26,14 +56,11 @@ class _PitchLoadingPageState extends State<PitchLoadingPage> {
       final linkedinUrl = args['linkedin'] as String;
       final siteUrl = args['site'] as String;
 
-      final resultado = await gerarPitchIntegrado(linkedinUrl, siteUrl);
-
+      // Chama a lógica do viewmodel
+      await _viewModel.generateAndSavePitch(linkedinUrl, siteUrl);
+    } else {
       if (mounted) {
-        Navigator.pushReplacementNamed(
-          context,
-          AppRoutes.pitch,
-          arguments: resultado,
-        );
+        Navigator.pushReplacementNamed(context, AppRoutes.erro);
       }
     }
   }

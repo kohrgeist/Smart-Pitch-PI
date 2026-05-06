@@ -1,8 +1,28 @@
 import 'package:flutter/material.dart';
 import '../../../../app/routes/app_routes.dart';
+import '../viewmodel/home_viewmodel.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late final HomeViewModel viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = HomeViewModel();
+  }
+
+  @override
+  void dispose() {
+    viewModel.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,94 +30,104 @@ class HomePage extends StatelessWidget {
     const Color verdeSmart = Color(0xFF93C736);
     const Color cinzaFundo = Color(0xFFF6F6F6);
 
-    return Scaffold(
-      backgroundColor: cinzaFundo,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-          decoration: BoxDecoration(
-            color: const Color(0xFFF2E9F5), // Tom suave do figma
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: const Text(
-            "Início",
-            style: TextStyle(
-              color: azulSmart,
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-            ),
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.account_circle_outlined,
-              color: azulSmart,
-              size: 30,
-            ),
-            onPressed: () => Navigator.pushNamed(
-              context,
-              AppRoutes.perfil,
-            ), // Defina essa rota no seu app_routes
-          ),
-          const SizedBox(width: 10),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Column(
-          children: [
-            const SizedBox(height: 60),
-            const Text(
-              "Comece a pesquisar",
-              style: TextStyle(
-                fontSize: 26,
-                color: azulSmart,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Georgia', // Ou a fonte serifada do seu projeto
+    return AnimatedBuilder(
+      animation: viewModel,
+      builder: (_, _) {
+        return Scaffold(
+          backgroundColor: cinzaFundo,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            centerTitle: true,
+            title: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF2E9F5),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Text(
+                "Início",
+                style: TextStyle(
+                  color: azulSmart,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
               ),
             ),
-            const SizedBox(height: 40),
-            _buildTextField("URL do Linkedin"),
-            const SizedBox(height: 15),
-            _buildTextField("URL site da empresa"),
-            const SizedBox(height: 80),
-            SizedBox(
-              width: 200,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: verdeSmart,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    side: const BorderSide(color: azulSmart, width: 2),
-                  ),
-                  elevation: 5,
+            actions: [
+              IconButton(
+                icon: const Icon(
+                  Icons.account_circle_outlined,
+                  color: azulSmart,
+                  size: 30,
                 ),
-                onPressed: () =>
-                    Navigator.pushNamed(context, AppRoutes.pitchLoading),
-                child: const Text(
-                  "Pesquisar",
+                onPressed: () => Navigator.pushNamed(context, AppRoutes.perfil),
+              ),
+              const SizedBox(width: 10),
+            ],
+          ),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              children: [
+                const SizedBox(height: 60),
+                const Text(
+                  "Comece a pesquisar",
                   style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 26,
                     color: azulSmart,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Georgia',
                   ),
                 ),
-              ),
+                const SizedBox(height: 40),
+                _buildTextField(
+                  "URL do Linkedin",
+                  viewModel.linkedinController,
+                ),
+                const SizedBox(height: 15),
+                _buildTextField(
+                  "URL site da empresa",
+                  viewModel.siteController,
+                ),
+                const SizedBox(height: 80),
+                SizedBox(
+                  width: 200,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: verdeSmart,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        side: const BorderSide(color: azulSmart, width: 2),
+                      ),
+                      elevation: 5,
+                    ),
+                    onPressed: () => viewModel.onPesquisarPressed(
+                      context,
+                    ), // Chamada para o ViewModel
+                    child: const Text(
+                      "Pesquisar",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: azulSmart,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: _buildBottomNav(context),
+          ),
+          bottomNavigationBar: _buildBottomNav(context),
+        );
+      },
     );
   }
 
-  Widget _buildTextField(String hint) {
+  Widget _buildTextField(String hint, TextEditingController controller) {
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         filled: true,
         fillColor: const Color(0xFF1C2D6B),
