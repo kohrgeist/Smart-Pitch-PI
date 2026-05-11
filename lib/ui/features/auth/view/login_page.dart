@@ -17,14 +17,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-
-    // Serviço de autenticação
     final authService = AuthServiceImpl();
-
-    // repositório de autenticação
     final authRepository = AuthRepositoryImpl(authService);
-
-    // viewmodel de login
     viewModel = LoginViewmodel(authRepository: authRepository);
   }
 
@@ -50,8 +44,6 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(height: 24),
-
-                    // Logo atualizada
                     Center(
                       child: Image.asset(
                         'assets/images/logo.jpg',
@@ -59,7 +51,6 @@ class _LoginPageState extends State<LoginPage> {
                         fit: BoxFit.contain,
                       ),
                     ),
-
                     const SizedBox(height: 120),
                     const Text(
                       "E-mail",
@@ -125,13 +116,27 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 40),
+
+                    // NOVO: Botão de Esqueci a Senha
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () => Navigator.pushNamed(
+                          context,
+                          AppRoutes.esqueciSenha,
+                        ),
+                        child: const Text(
+                          "Esqueceu a senha?",
+                          style: TextStyle(color: Color(0xFF11266C)),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 15),
                     InkWell(
                       onTap: viewModel.isLoading
                           ? null
-                          : () {
-                              viewModel.onLoginPressed(context);
-                            },
+                          : () => viewModel.onLoginPressed(context),
                       borderRadius: BorderRadius.circular(25),
                       child: Container(
                         height: 55,
@@ -160,9 +165,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 15),
                     InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.register);
-                      },
+                      onTap: () =>
+                          Navigator.pushNamed(context, AppRoutes.register),
                       borderRadius: BorderRadius.circular(25),
                       child: Container(
                         height: 55,

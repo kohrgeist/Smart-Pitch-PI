@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import '../../../../app/routes/app_routes.dart';
+import '../viewmodel/perfil_viewmodel.dart';
 
-class PerfilPage extends StatelessWidget {
+class PerfilPage extends StatefulWidget {
   const PerfilPage({super.key});
+
+  @override
+  State<PerfilPage> createState() => _PerfilPageState();
+}
+
+class _PerfilPageState extends State<PerfilPage> {
+  late final PerfilViewModel viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = PerfilViewModel();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +43,6 @@ class PerfilPage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 40),
-            // Logo / Avatar central baseado no Figma
             Stack(
               alignment: Alignment.center,
               children: [
@@ -45,21 +59,35 @@ class PerfilPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-            const Text(
-              "Usuário SmartPitch",
-              style: TextStyle(
-                fontSize: 22,
+
+            Text(
+              viewModel.userEmail,
+              style: const TextStyle(
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: azulSmart,
               ),
             ),
             const SizedBox(height: 40),
-            // Opções de Perfil
-            _buildProfileOption(Icons.edit, "Editar Dados"),
-            _buildProfileOption(Icons.notifications_outlined, "Notificações"),
-            _buildProfileOption(Icons.security, "Privacidade"),
+
+            _buildProfileOption(
+              Icons.lock_reset,
+              "Esqueci a senha",
+              () => Navigator.pushNamed(context, AppRoutes.esqueciSenha),
+            ),
+
+            _buildProfileOption(Icons.exit_to_app, "Sair do App", () async {
+              await viewModel.deslogar();
+              if (context.mounted) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AppRoutes.login,
+                  (route) => false,
+                );
+              }
+            }),
+
             const Spacer(),
-            // Logo do projeto no rodapé
             Image.asset(
               "assets/images/logo.jpg",
               height: 60,
@@ -73,19 +101,19 @@ class PerfilPage extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileOption(IconData icon, String title) {
+  Widget _buildProfileOption(IconData icon, String title, VoidCallback onTap) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
-        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5)],
+        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 5)],
       ),
       child: ListTile(
         leading: Icon(icon, color: const Color(0xFF11266C)),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
         trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-        onTap: () {},
+        onTap: onTap,
       ),
     );
   }

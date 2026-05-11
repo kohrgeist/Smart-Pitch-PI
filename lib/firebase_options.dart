@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -36,10 +33,7 @@ class DefaultFirebaseOptions {
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -53,10 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyASsKVLtpqTUSb9_LCRZZPNS90BGtFTzJA',
-    appId: '1:1033856903239:android:5a90fb4d3349d941dca962',
-    messagingSenderId: '1033856903239',
-    projectId: 'smart-ptich',
-    storageBucket: 'smart-ptich.firebasestorage.app',
+    apiKey: 'AIzaSyBRApBNSnAcH9Q6G-eAq0XX5gJ5rtMd15U',
+    appId: '1:9799442059:android:17c870343f5c557c81be8e',
+    messagingSenderId: '9799442059',
+    projectId: 'projeto-4-1d471',
+    storageBucket: 'projeto-4-1d471.firebasestorage.app',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAcgfEVOAmnXxp3uXrzdvT8ipjY2R3p_bU',
+    appId: '1:9799442059:web:2fb298f00baad5e281be8e',
+    messagingSenderId: '9799442059',
+    projectId: 'projeto-4-1d471',
+    authDomain: 'projeto-4-1d471.firebaseapp.com',
+    storageBucket: 'projeto-4-1d471.firebasestorage.app',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyAcgfEVOAmnXxp3uXrzdvT8ipjY2R3p_bU',
+    appId: '1:9799442059:web:801d418cc78446bd81be8e',
+    messagingSenderId: '9799442059',
+    projectId: 'projeto-4-1d471',
+    authDomain: 'projeto-4-1d471.firebaseapp.com',
+    storageBucket: 'projeto-4-1d471.firebasestorage.app',
+  );
+
 }
