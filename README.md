@@ -10,7 +10,7 @@ LDRs e profissionais de pré-vendas que necessitam de escala e agilidade na elab
 
 ## ⚙️ Arquitetura e Restrições Técnicas
 - **Front-end:** Desenvolvido em Flutter e Dart.
-- **Back-end & IA:** Arquitetura utilizando Firebase Authentication e Firebase Vertex AI (Gemini 1.5 Flash).
-- **Integração Externa:** APIs de terceiros para extração de dados públicos do LinkedIn (compatibilidade total com LGPD via princípio de Legítimo Interesse e não retenção de banco de dados).
+- **Back-end & IA:** Arquitetura utilizando Firebase Authentication e Firebase Vertex AI (Gemini 3.0-lite).
+- **Integração Externa:** APIs de terceiros para extração de dados públicos do LinkedIn e sites (compatibilidade total com LGPD via princípio de Legítimo Interesse e não retenção de banco de dados).
 
 ---
