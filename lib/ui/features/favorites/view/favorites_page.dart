@@ -1,18 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../app/routes/app_routes.dart';
+import '../viewmodel/favorites_viewmodel.dart';
 
-class FavoritesPage extends StatelessWidget {
+class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
+
+  @override
+  State<FavoritesPage> createState() => _FavoritesPageState();
+}
+
+class _FavoritesPageState extends State<FavoritesPage> {
+  late final FavoritesViewModel viewModel;
+  Stream<QuerySnapshot>? _favoritosStream;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = FavoritesViewModel();
+    _favoritosStream = viewModel.getFavoritosStream();
+  }
+
+  @override
+  void dispose() {
+    viewModel.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     const Color azulSmart = Color(0xFF11266C);
     const Color verdeSmart = Color(0xFF93C736);
     const Color cinzaFundo = Color(0xFFF6F6F6);
-
-    final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
       backgroundColor: cinzaFundo,
@@ -26,7 +45,7 @@ class FavoritesPage extends StatelessWidget {
         ),
         iconTheme: const IconThemeData(color: azulSmart),
       ),
-      body: user == null
+      body: viewModel.user == null
           ? const Center(
               child: Text(
                 "Faça login para ver seus favoritos.",
@@ -34,12 +53,7 @@ class FavoritesPage extends StatelessWidget {
               ),
             )
           : StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('usuarios')
-                  .doc(user.uid)
-                  .collection('favoritos')
-                  .orderBy('data_criacao', descending: true)
-                  .snapshots(),
+              stream: _favoritosStream,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
@@ -75,7 +89,10 @@ class FavoritesPage extends StatelessWidget {
                   itemCount: favoritos.length,
                   itemBuilder: (context, index) {
                     final doc = favoritos[index];
-                    final pitchTexto = doc['pitch'] as String? ?? 'Sem texto';
+                    final data = doc.data() as Map<String, dynamic>;
+                    final pitchTexto = data.containsKey('pitch')
+                        ? data['pitch'].toString()
+                        : 'Sem texto';
 
                     return Container(
                       margin: const EdgeInsets.only(bottom: 15),
@@ -132,12 +149,7 @@ class FavoritesPage extends StatelessWidget {
                                       color: Colors.redAccent,
                                     ),
                                     onPressed: () {
-                                      FirebaseFirestore.instance
-                                          .collection('usuarios')
-                                          .doc(user.uid)
-                                          .collection('favoritos')
-                                          .doc(doc.id)
-                                          .delete();
+                                      viewModel.deletarFavorito(doc.id);
                                     },
                                   ),
                                 ),
@@ -178,7 +190,7 @@ class FavoritesPage extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context, AppRoutes.historico),
               child: const Row(
                 children: [
-                  Icon(Icons.menu, color: Colors.white, size: 20),
+                  Icon(Icons.history, color: Colors.white, size: 20),
                   SizedBox(width: 4),
                   Text(
                     "Histórico",

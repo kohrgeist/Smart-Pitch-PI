@@ -38,22 +38,6 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
-            centerTitle: true,
-            title: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF2E9F5),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Text(
-                "Início",
-                style: TextStyle(
-                  color: azulSmart,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            ),
             actions: [
               IconButton(
                 icon: const Icon(
@@ -103,9 +87,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       elevation: 5,
                     ),
-                    onPressed: () => viewModel.onPesquisarPressed(
-                      context,
-                    ), // Chamada para o ViewModel
+                    onPressed: () => viewModel.onPesquisarPressed(context),
                     child: const Text(
                       "Pesquisar",
                       style: TextStyle(
