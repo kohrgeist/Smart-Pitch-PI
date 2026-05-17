@@ -13,7 +13,7 @@ O usuário pode alterar email e nome.
 O sistema deve permitir que novos usuários sejam criados. 
 
 ### RF05 — Entrada de URLs Para Pesquisa
-O sistema deve permitir que o usuário usuário insira a URL do perfil do Linkedin do indivíduo, assim como a URL do site da empresa.
+O sistema deve permitir que o usuário insira a URL do perfil do Linkedin do indivíduo, assim como a URL do site da empresa.
 
 ### RF06 — Atualização do Processo
 O sistema deve apresentar a atualização do processo de pesquisa ao usuário.
