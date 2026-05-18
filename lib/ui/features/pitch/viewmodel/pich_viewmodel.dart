@@ -10,6 +10,7 @@ class PitchViewModel extends ChangeNotifier {
   Future<void> toggleFavorito(String pitchGerado, BuildContext context) async {
     final user = FirebaseAuth.instance.currentUser;
 
+    // Verifica se o usuário está logado
     if (user == null) {
       if (context.mounted) {
         _showSnackBar(context, 'Você precisa estar logado!', Colors.redAccent);
