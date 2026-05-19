@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class HistoricoViewModel extends ChangeNotifier {
   final user = FirebaseAuth.instance.currentUser;
 
+  // Retorna um fluxo contínuo (Stream) do Firestore, ordenando os registros do histórico do mais recente para o mais antigo
   Stream<QuerySnapshot>? getHistoricoStream() {
     if (user == null) return null;
     return FirebaseFirestore.instance

@@ -80,7 +80,9 @@ class PitchService {
       - Linha 3 (CTA Suave de prospecção).
       ''';
 
-      final content = [Content.text(prompt)];
+      final content = [
+        Content.text(prompt),
+      ]; // Envia os dados compilados para a IA gerar o texto hiperpersonalizado.
       final responseGemini = await model.generateContent(content);
 
       return responseGemini.text ?? 'Erro interno: A IA falhou.';

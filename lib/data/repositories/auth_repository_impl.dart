@@ -2,6 +2,7 @@ import '../service/auth_service.dart';
 import 'auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
+  // Implementa o padrão Repository para abstrair a origem dos dados (Firebase) da camada de visualização (ViewModel).
   final AuthService _authService;
 
   AuthRepositoryImpl(this._authService);

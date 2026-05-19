@@ -17,6 +17,7 @@ void main() {
     ) async {
       // ARRANGE
       final viewModel = HomeViewModel();
+      viewModel.checkAuthOverride = () => true;
 
       // Entradas
       viewModel.linkedinController.text =

@@ -12,7 +12,8 @@ class AppWidget extends StatelessWidget {
       title: 'Projeto 01 - Smart Pitch',
       theme: ThemeData(useMaterial3: true),
       initialRoute: AppRoutes.splash,
-      routes: AppPages.routes,
+      routes: AppPages
+          .routes, // Define o mapa de rotas da aplicação, separando a navegação da construção das telas.
     );
   }
 }
