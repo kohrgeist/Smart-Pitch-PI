@@ -7,6 +7,7 @@ class PitchViewModel extends ChangeNotifier {
   String? documentId;
   bool isLoadingFav = false;
 
+  // Gerencia a ação de salvar ou remover um pitch da lista de Favoritos
   Future<void> toggleFavorito(String pitchGerado, BuildContext context) async {
     final user = FirebaseAuth.instance.currentUser;
 
@@ -22,11 +23,13 @@ class PitchViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
+      // Acessa a subcoleção 'favoritos' do usuário logado no Firestore
       final collection = FirebaseFirestore.instance
           .collection('usuarios')
           .doc(user.uid)
           .collection('favoritos');
 
+      // Se já é favorito, deleta o documento pelo ID. Caso contrário, adiciona um novo documento
       if (isFavorito && documentId != null) {
         // remove dos favoritos
         await collection.doc(documentId).delete();

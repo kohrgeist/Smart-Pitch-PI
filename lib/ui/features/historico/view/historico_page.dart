@@ -55,6 +55,7 @@ class _HistoricoPageState extends State<HistoricoPage> {
           : StreamBuilder<QuerySnapshot>(
               stream: _historicoStream,
               builder: (context, snapshot) {
+                // Constrói a lista de histórico de forma reativa. A UI é atualizada automaticamente em tempo real caso um item seja adicionado ou removido no banco de dados.
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
                     child: CircularProgressIndicator(color: azulSmart),

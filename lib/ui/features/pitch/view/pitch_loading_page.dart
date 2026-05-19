@@ -21,7 +21,7 @@ class _PitchLoadingPageState extends State<PitchLoadingPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _iniciarGeracao();
     });
-  }
+  } //Garante que a função de geração de Pitch via IA comece a rodar imediatamente após a tela de Loading ser desenhada pela primeira vez
 
   @override
   void dispose() {
@@ -32,7 +32,7 @@ class _PitchLoadingPageState extends State<PitchLoadingPage> {
 
   void _onViewModelChange() {
     if (!mounted) return;
-
+    // Observa a ViewModel. Redireciona para a tela de Erro ou para a tela do Pitch Pronto com base no resultado da IA
     if (_viewModel.errorMessage != null) {
       Navigator.pushReplacementNamed(
         context,

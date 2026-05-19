@@ -9,6 +9,7 @@ class AuthServiceImpl implements AuthService {
 
   @override
   Future<UserCredential> login({
+    //Autentica um usuário existente no Firebase Authentication usando E-mail e Senha.
     required String email,
     required String password,
   }) {
@@ -20,6 +21,7 @@ class AuthServiceImpl implements AuthService {
 
   @override
   Future<UserCredential> register({
+    // Cria um novo registro de usuário no Firebase Authentication.
     required String email,
     required String password,
   }) {

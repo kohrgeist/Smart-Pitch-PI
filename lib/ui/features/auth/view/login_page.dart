@@ -21,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
     final authRepository = AuthRepositoryImpl(authService);
     viewModel = LoginViewmodel(authRepository: authRepository);
   }
+  // Inicializa a injeção de dependências manualmente: AuthService -> AuthRepository -> ViewModel.
 
   @override
   void dispose() {
@@ -36,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
         return Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(
+            // Escuta as mudanças de estado da ViewModel (como a alternância da visibilidade da senha ou o estado de loading) para reconstruir a tela dinamicamente.
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(20.0),
               child: Form(
@@ -117,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
 
-                    // NOVO: Botão de Esqueci a Senha
+                    // Botão de Esqueci a Senha
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
@@ -165,8 +167,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 15),
                     InkWell(
-                      onTap: () =>
-                          Navigator.pushNamed(context, AppRoutes.register),
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        AppRoutes.register,
+                      ), // Botão de navegação para registrar-se
                       borderRadius: BorderRadius.circular(25),
                       child: Container(
                         height: 55,

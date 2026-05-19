@@ -1,4 +1,3 @@
-// ignore_for_file: unused_import
 import '../../../../data/service/auth_service_impl.dart';
 import '../../../../data/repositories/auth_repository_impl.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +14,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   late final RegisterViewmodel viewModel;
 
+  // O método initState é chamado apenas quando a tela é inserida na árvore de widgets.
   @override
   void initState() {
     super.initState();
@@ -29,12 +29,14 @@ class _RegisterPageState extends State<RegisterPage> {
     viewModel = RegisterViewmodel(authRepository: authRepository);
   }
 
+  // O método dispose é chamado quando a tela é destruída
   @override
   void dispose() {
     viewModel.dispose();
     super.dispose();
   }
 
+  // interface principal da tela, com os campos para registro
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -52,7 +54,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     const SizedBox(height: 24),
 
-                    // Logo atualizada
                     Center(
                       child: Image.asset(
                         'assets/images/logo.jpg',
@@ -76,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     const SizedBox(height: 30),
 
-                    // Campo E-mail
+                    // Campo para o E-mail
                     const Text(
                       "E-mail",
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -92,7 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     const SizedBox(height: 20),
 
-                    // Campo Senha
+                    // Campo para a Senha
                     const Text(
                       "Senha",
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -120,14 +121,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     const SizedBox(height: 20),
 
-                    // Campo Confirmar Senha
+                    // Campo para confirmar Senha
                     const Text(
                       "Confirmar Senha",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8),
                     TextFormField(
-                      // Integração de novas funções criadas na viewmodel
                       controller: viewModel.confirmPasswordController,
                       obscureText: viewModel.confirmObscurePassword,
                       validator: viewModel.confirmPasswordValidator,
@@ -149,7 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     const SizedBox(height: 40),
 
-                    // Botão Registrar
+                    // Botão de registrar
                     InkWell(
                       onTap: viewModel.isLoading
                           ? null
@@ -203,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  // Função para não repetir código de estilo de input
+  // Função para não repetir código de estilo de input, encapsulando o design repetitivo dos campos de texto
   InputDecoration _inputDecoration(String hintText) {
     return InputDecoration(
       filled: true,

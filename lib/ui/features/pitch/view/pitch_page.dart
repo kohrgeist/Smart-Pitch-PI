@@ -40,6 +40,7 @@ class _PitchPageState extends State<PitchPage> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             iconTheme: const IconThemeData(color: azulSmart),
+            // Recupera a string do pitch gerado que foi passada como argumento através da rota anterior
             title: const Text(
               "Seu Cold Email",
               style: TextStyle(color: azulSmart, fontWeight: FontWeight.bold),
@@ -49,6 +50,7 @@ class _PitchPageState extends State<PitchPage> {
               IconButton(
                 icon: const Icon(Icons.copy),
                 onPressed: () {
+                  // Copia o texto gerado pela IA para a área de transferência do celular do usuário.
                   Clipboard.setData(ClipboardData(text: pitchGerado));
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(

@@ -10,6 +10,7 @@ class LoginViewmodel extends ChangeNotifier {
   LoginViewmodel({required AuthRepository authRepository})
     : _authRepository = authRepository;
 
+  // Chave global para gerenciar e validar o estado do formulário de login.
   final formKey = GlobalKey<FormState>();
 
   final emailController = TextEditingController();
@@ -19,6 +20,7 @@ class LoginViewmodel extends ChangeNotifier {
   bool isLoading = false;
 
   String? emailValidator(String? value) {
+    // Validação do email
     return Validatorless.multiple([
       Validatorless.required('E-mail é obrigatório'),
       Validatorless.email('Digite um e-mail válido'),
@@ -26,6 +28,7 @@ class LoginViewmodel extends ChangeNotifier {
   }
 
   String? passwordValidator(String? value) {
+    // Validação da senha
     return Validatorless.multiple([
       Validatorless.required('A senha é obrigatória!'),
       Validatorless.min(6, 'A senha deve ter pelo menos 6 caracteres'),
@@ -48,7 +51,10 @@ class LoginViewmodel extends ChangeNotifier {
     final password = passwordController.text.trim();
 
     try {
-      await _authRepository.login(email: email, password: password);
+      await _authRepository.login(
+        email: email,
+        password: password,
+      ); // Tenta realizar o login. Se sucesso, mostra um SnackBar e redireciona para a HomePage.
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -58,6 +64,7 @@ class LoginViewmodel extends ChangeNotifier {
         );
         Navigator.pushReplacementNamed(context, AppRoutes.home);
       }
+      // Trata os erros específicos do Firebase para exibir mensagens amigáveis ao usuário (ex: senha incorreta).
     } on FirebaseAuthException catch (e) {
       String mensagemErro = "Erro ao realizar login.";
 
