@@ -1,7 +1,6 @@
 import '../../../../data/service/auth_service_impl.dart';
 import '../../../../data/repositories/auth_repository_impl.dart';
 import 'package:flutter/material.dart';
-import '../../../../app/routes/app_routes.dart';
 import '../viewmodel/register_viewmodel.dart';
 
 class RegisterPage extends StatefulWidget {
