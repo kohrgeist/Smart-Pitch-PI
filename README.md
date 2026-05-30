@@ -14,3 +14,17 @@ LDRs e profissionais de pré-vendas que necessitam de escala e agilidade na elab
 - **Integração Externa:** APIs de terceiros para extração de dados públicos do LinkedIn e sites (compatibilidade total com LGPD via princípio de Legítimo Interesse e não retenção de banco de dados).
 
 ---
+## 🚀 Como executar o projeto localmente
+
+### 1. Pré-requisitos
+Certifique-se de ter instalado em sua máquina:
+- **Flutter SDK** (versão 3.22.0 ou superior).
+- Uma IDE de sua preferência (recomendado: VS Code ou Android Studio) com as extensões do Flutter e Dart instaladas.
+- Um emulador configurado (Android/iOS) ou um dispositivo físico conectado.
+
+### 2. Configuração
+1. Abra a pasta raiz do projeto na sua IDE.
+2. Certifique-se de que o arquivo `.env` está presente na raiz do projeto (ele já está incluído no commit e contém as variáveis necessárias como `GEMINI_API_KEY` e `SERPER_API_KEY`).
+3. Baixe as dependências do Flutter executando o comando abaixo no terminal:
+   ```bash
+   flutter pub get
